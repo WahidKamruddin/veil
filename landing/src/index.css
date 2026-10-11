@@ -1,0 +1,58 @@
+@import 'tailwindcss';
+
+/* Monochrome tokens. Light is the default; the nav toggle sets data-theme="dark" to invert them. */
+:root {
+  --paper: #fafafa;
+  --surface: #ffffff;
+  --ink: #111111;
+  --muted: #555555;
+  --line: #e2e2e2;
+  --tint: #f0f0f0;
+}
+
+[data-theme='dark'] {
+  --paper: #0d0d0d;
+  --surface: #161616;
+  --ink: #f2f2f2;
+  --muted: #a3a3a3;
+  --line: #2a2a2a;
+  --tint: #1e1e1e;
+}
+
+@theme inline {
+  --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-tint: var(--tint);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
