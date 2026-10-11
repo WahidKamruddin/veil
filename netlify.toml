@@ -1,0 +1,8 @@
+# Netlify deploys only the landing page; the Python proxy runs locally.
+[build]
+  base = "landing"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
