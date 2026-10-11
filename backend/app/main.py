@@ -8,12 +8,13 @@ from contextlib import asynccontextmanager
 import httpx
 from fastapi import FastAPI
 
-from app.proxy import router
+from app.proxy import WireTap, router
 from app.vault import SessionStore
 
 
 def create_app(transport: httpx.AsyncBaseTransport | None = None,
-               anthropic_base: str | None = None, openai_base: str | None = None) -> FastAPI:
+               anthropic_base: str | None = None, openai_base: str | None = None,
+               wire_path: str | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         app.state.anthropic_base = (anthropic_base or os.environ.get(
@@ -21,6 +22,7 @@ def create_app(transport: httpx.AsyncBaseTransport | None = None,
         app.state.openai_base = (openai_base or os.environ.get(
             "VEIL_OPENAI_UPSTREAM", "https://api.openai.com")).rstrip("/")
         app.state.sessions = SessionStore()
+        app.state.wiretap = WireTap(wire_path or os.environ.get("VEIL_WIRE", "wire.jsonl"))
         async with httpx.AsyncClient(transport=transport, timeout=httpx.Timeout(600, connect=10)) as client:
             app.state.client = client
             yield
