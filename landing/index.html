@@ -2,16 +2,50 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Veil is a local proxy that redacts secrets and personal data before your prompt reaches the model, then restores them in the reply." />
+    <title>Veil · Secret & PII Redaction Proxy for LLMs</title>
+    <meta name="description" content="Veil is a local proxy that redacts API keys, secrets, and personal data from prompts before they reach Claude or OpenAI, then restores them in the reply." />
+    <link rel="canonical" href="https://veil-proxy.netlify.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="theme-color" content="#fafafa" />
+
+    <!-- Open Graph / link previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Veil" />
+    <meta property="og:url" content="https://veil-proxy.netlify.app/" />
+    <meta property="og:title" content="Veil · The model never sees your secrets" />
+    <meta property="og:description" content="A local proxy that strips keys and personal data from every prompt, then puts them back in the reply." />
+    <meta property="og:image" content="https://veil-proxy.netlify.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Veil hero: a prompt with an email, AWS key, and card number shown redacted to placeholders before reaching the model." />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Veil · The model never sees your secrets" />
+    <meta name="twitter:description" content="A local proxy that strips keys and personal data from every prompt, then puts them back in the reply." />
+    <meta name="twitter:image" content="https://veil-proxy.netlify.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Veil hero: a prompt with an email, AWS key, and card number shown redacted to placeholders before reaching the model." />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Veil",
+        "url": "https://veil-proxy.netlify.app/",
+        "image": "https://veil-proxy.netlify.app/og-image.png",
+        "description": "A local reverse proxy that redacts secrets and personal data from LLM requests before they reach the model API, then restores them in the response.",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "macOS, Linux, Windows",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
     <script>
       // Apply a saved theme before first paint so dark mode never flashes light. Light is the default.
       try {
         if (localStorage.getItem('veil-theme') === 'dark') document.documentElement.dataset.theme = 'dark'
       } catch {}
     </script>
-    <title>Veil · The model never sees your secrets</title>
   </head>
   <body>
     <div id="root"></div>
